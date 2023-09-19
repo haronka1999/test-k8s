@@ -1,0 +1,17 @@
+# Use an official OpenJDK runtime as a parent image
+FROM openjdk:17-jdk-slim
+
+# Set the working directory to /app
+WORKDIR /app
+
+# Copy the application JAR file into the container at /app
+COPY target/test-k8s-0.0.1-SNAPSHOT.jar /app/test-k8s.jar
+
+# Make port 8080 available to the world outside this container
+EXPOSE 8080
+
+# Define environment variable
+ENV APP_NAME=your-app
+
+# Run the JAR file
+CMD ["java", "-jar", "test-k8s.jar"]
